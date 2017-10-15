@@ -7,7 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    adminEmail: 'cemilcelik84@gmail.com'
+    default_email: '%admin_email%'
 
 framework:
     #esi: ~

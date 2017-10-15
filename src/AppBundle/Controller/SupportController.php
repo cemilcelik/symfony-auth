@@ -23,6 +23,8 @@ class SupportController extends Controller
             ->add('send', ButtonType::class)
             ->getForm();
 
+        dump($this->container->getParameter('default_email'));
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -34,7 +36,7 @@ class SupportController extends Controller
             $message = \Swift_Message::newInstance()
                 ->setSubject('Symfony Contact Message')
                 ->setFrom($data['from'])
-                ->setTo($this->container->getParameter('adminEmail'))
+                ->setTo($this->container->getParameter('default_email'))
                 ->setBody(
                     $data['message'],
                     'text/plain'
