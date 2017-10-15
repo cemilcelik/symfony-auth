@@ -3,3 +3,8 @@
 .mr-10 { margin-right: 10px; }
 .mb-10 { margin-bottom: 10px; }
 .ml-10 { margin-left: 10px; }
+
+.form-signin{
+    margin: 0 auto;
+    max-width: 400px;
+}

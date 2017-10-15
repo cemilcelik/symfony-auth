@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MemberRepository")
  */
-class Member implements UserInterface, \Serializable
+class Member implements UserInterface
 {
     /**
      * @var int
@@ -43,6 +43,10 @@ class Member implements UserInterface, \Serializable
      */
     private $password;
 
+    /**
+     * @var string
+     */
+    private $plainPassword;
 
     /**
      * Get id
@@ -126,6 +130,30 @@ class Member implements UserInterface, \Serializable
         return $this->password;
     }
 
+    /**
+     * Set plainPassword
+     *
+     * @param string $plainPassword
+     *
+     * @return Member
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get plainPassword
+     *
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
     public function getRoles() 
     {
 
@@ -139,16 +167,6 @@ class Member implements UserInterface, \Serializable
     public function eraseCredentials() 
     {
 
-    }
-
-    public function serialize() 
-    {
-        # code...
-    }
-    
-    public function unserialize() 
-    {
-        # code...
     }
 }
 

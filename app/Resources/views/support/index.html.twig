@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Hello World</h1>
+
+    {% if app.user  %}
+        <div><a href="{{ logout_path('main') }}" class="btn btn-primary pull-right">Logout</a></div>
+    {% endif %}
+
+    <h1>Contact Form</h1>
+
     <div>
         {{ form(ourForm) }}
     </div>
+    
 {% endblock %}

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SupportController extends Controller
 {
@@ -18,9 +18,9 @@ class SupportController extends Controller
     public function indexAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('from', EmailType::class)
-            ->add('message', TextareaType::class)
-            ->add('send', ButtonType::class)
+            ->add('from', EmailType::class, ['label' => 'Your E-Mail Address'])
+            ->add('message', TextareaType::class, ['attr' => ['rows' => 10]])
+            ->add('send', SubmitType::class, ['attr' => ['class' => 'btn btn-primary btn-block']])
             ->getForm();
 
         dump($this->container->getParameter('default_email'));
