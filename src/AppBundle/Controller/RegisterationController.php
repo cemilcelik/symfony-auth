@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use AppBundle\Form\MemberType;
 use AppBundle\Entity\Member;
 
@@ -36,6 +37,15 @@ class RegisterationController extends Controller {
 
             $em->persist($member);
             $em->flush();
+
+            $token = new UsernamePasswordToken(
+                $member,
+                $password,
+                'main',
+                $member->getRoles()
+            );
+            $this->get('security.token_storage')->setToken($token);
+            $this->get('session')->set('_security_main', serialize($token));
 
             $this->addFlash('success', 'You are now successfully registered!');
 
